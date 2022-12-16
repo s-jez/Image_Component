@@ -4,7 +4,10 @@
   border: 1px solid #202945;
   border-radius: 10px;
   font-size: 14px;
+  padding: 10px;
   cursor: pointer;
+  font-weight: 600;
+
   &__small {
     width: 152px;
     height: 40px;
@@ -13,7 +16,21 @@
     font-size: 14px;
     background-color: white;
     cursor: pointer;
-    font-weight: 400;
+    font-weight: 600;
     color: white;
+  }
+}
+@media (max-width: 370px) {
+  .btn {
+    &__small {
+      width: 120px;
+    }
+  }
+}
+@media (max-width: 300px) {
+  .btn {
+    &__small {
+      width: 100px;
+    }
   }
 }
