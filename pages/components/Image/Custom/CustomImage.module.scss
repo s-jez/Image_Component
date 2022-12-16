@@ -1,0 +1,10 @@
+.img {
+  margin: 25px;
+}
+.circle {
+  display: inline-block;
+  img {
+    border-radius: 50%;
+    border: 1px solid #fff;
+  }
+}

@@ -1,0 +1,19 @@
+.btn {
+  width: 152px;
+  height: 44px;
+  border: 1px solid #202945;
+  border-radius: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  &__small {
+    width: 152px;
+    height: 40px;
+    border: 1px solid #202945;
+    border-radius: 10px;
+    font-size: 14px;
+    background-color: white;
+    cursor: pointer;
+    font-weight: 400;
+    color: white;
+  }
+}
