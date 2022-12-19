@@ -1,8 +1,13 @@
 .img {
   margin: 25px;
 }
+.square {
+  margin: 5px 0;
+  background-color: rgb(185, 185, 185);
+}
 .circle {
   display: inline-block;
+  opacity: 1;
   img {
     border-radius: 50%;
     border: 1px solid #fff;
