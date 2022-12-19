@@ -53,6 +53,16 @@
       cursor: pointer; 
     }
   }
+  .file {
+    &[type=file] {
+      display: none;
+    }
+  }
+  .label {
+    &:hover {
+      cursor: pointer;
+    }
+  }
 }
 @media (max-width: 1000px) {
   .container {

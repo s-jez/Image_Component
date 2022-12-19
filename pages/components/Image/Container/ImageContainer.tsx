@@ -10,7 +10,12 @@ const ImageContainer = () => {
       <p className={styles["container__text"]}>
         Dodaj lub zmień obecne zdjęcie profilowe
       </p>
-      <Button text="Dodaj zdjęcie" color="white" type="small" />
+      <Button color="white" type="small">
+        <label htmlFor="files" className={styles.label}>
+          Dodaj zdjęcie
+        </label>
+      </Button>
+      <input type="file" id="files" className={styles.file} />
       <CustomImage />
       <div className={styles["container__slider"]}>
         <button>
@@ -22,8 +27,12 @@ const ImageContainer = () => {
         </button>
       </div>
       <div className={styles["container__btns"]}>
-        <Button text="Anuluj" color="white" type="large" />
-        <Button text="Zapisz zmiany" color="orange" type="large" />
+        <Button color="white" type="large">
+          Anuluj
+        </Button>
+        <Button color="orange" type="large">
+          Zapisz zmiany
+        </Button>
       </div>
     </div>
   );
