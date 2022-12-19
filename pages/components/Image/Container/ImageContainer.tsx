@@ -2,8 +2,14 @@ import Button from "../../Button/Button";
 import CustomImage from "../Custom/CustomImage";
 import styles from "./ImageContainer.module.scss";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
+import { useRef, useState } from "react";
+import useDisplayImage from "../../../hooks/useDisplayImage";
 
 const ImageContainer = () => {
+  const [image, setImage] = useState<File | null>(null);
+
+  const { result, uploader } = useDisplayImage();
+
   return (
     <div className={styles.container}>
       <span className={styles["container__heading"]}>Zdjęcie profilowe</span>
@@ -15,8 +21,17 @@ const ImageContainer = () => {
           Dodaj zdjęcie
         </label>
       </Button>
-      <input type="file" id="files" className={styles.file} />
-      <CustomImage />
+      <input
+        type="file"
+        id="files"
+        className={styles.file}
+        onChange={(e) => {
+          if (!e.target.files) return;
+          setImage(e.target.files[0]);
+          uploader(e);
+        }}
+      />
+      {result && <CustomImage src={result} alt="" />}
       <div className={styles["container__slider"]}>
         <button>
           <AiOutlineMinus />

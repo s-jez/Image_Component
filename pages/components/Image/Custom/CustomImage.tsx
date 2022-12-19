@@ -1,14 +1,20 @@
 import Image from "next/image";
 import styles from "./CustomImage.module.scss";
+import { FC } from "react";
 
-const CustomImage = () => {
+interface ICustomImage {
+  src: string;
+  alt: string;
+}
+
+const CustomImage: FC<ICustomImage> = ({ src, alt }: ICustomImage) => {
   return (
     <div>
       <div className={styles.circle}>
         <Image
           className={styles.img}
-          src="/avatar.png"
-          alt="avatar"
+          src={src}
+          alt={alt}
           width={256}
           height={256}
         />
