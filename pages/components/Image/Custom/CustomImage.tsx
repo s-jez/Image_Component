@@ -17,7 +17,13 @@ const CustomImage: FC<ICustomImage> = ({
   height,
 }: ICustomImage) => {
   return (
-    <div className={styles.square} style={{ backgroundImage: `url(${src})` }}>
+    <div
+      className={styles.square}
+      style={{
+        backgroundImage: `url(${src})`,
+        backgroundSize: "cover",
+      }}
+    >
       <div className={styles.circle}>
         <Image
           className={styles.img}

@@ -8,9 +8,10 @@
 .circle {
   display: inline-block;
   opacity: 1;
+  opacity: 1;
   img {
     border-radius: 50%;
-    border: 1px solid #fff;
     object-fit: cover;
+    border: 1px solid #fff;
   }
 }
