@@ -6,32 +6,37 @@ import { url } from "inspector";
 interface ICustomImage {
   src: string;
   alt: string;
-  width: number;
-  height: number;
+  imageScale: number;
 }
 
 const CustomImage: FC<ICustomImage> = ({
   src,
   alt,
-  width,
-  height,
+  imageScale,
 }: ICustomImage) => {
   return (
-    <div
-      className={styles.square}
-      style={{
-        backgroundImage: `url(${src})`,
-        backgroundSize: "cover",
-      }}
-    >
-      <div className={styles.circle}>
-        <Image
-          className={styles.img}
-          src={src}
-          alt={alt}
-          width={width}
-          height={height}
-        ></Image>
+    <div>
+      <div
+        className={styles.square}
+        style={{
+          backgroundImage: `url(${src})`,
+          backgroundSize: "cover",
+        }}
+      >
+        <div
+          className={styles.circle}
+          style={{
+            transform: `scale(${imageScale}, ${imageScale})`,
+          }}
+        >
+          <Image
+            className={styles.img}
+            src={src}
+            alt={alt}
+            width={300}
+            height={300}
+          ></Image>
+        </div>
       </div>
     </div>
   );

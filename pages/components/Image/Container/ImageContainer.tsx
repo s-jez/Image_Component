@@ -7,7 +7,7 @@ import useDisplayImage from "../../../hooks/useDisplayImage";
 
 const ImageContainer = () => {
   const [image, setImage] = useState<File | null>(null);
-  const [imageSize, setImageSize] = useState(200);
+  const [imageScale, setImageScale] = useState(1);
 
   const { result, uploader } = useDisplayImage();
 
@@ -32,19 +32,19 @@ const ImageContainer = () => {
           uploader(e);
         }}
       />
-      {result && (
-        <CustomImage src={result} alt="" width={imageSize} height={imageSize} />
-      )}
+      {result && <CustomImage src={result} alt="" imageScale={imageScale} />}
       <div className={styles["container__slider"]}>
         <button>
           <AiOutlineMinus />
         </button>
         <input
           type="range"
-          min="200"
-          max="400"
+          min="1"
+          max="1.3"
+          value={imageScale}
+          step="0.1"
           onChange={(e) => {
-            setImageSize(+e.target.value);
+            setImageScale(+e.target.value);
           }}
           className={styles.slider}
         />
