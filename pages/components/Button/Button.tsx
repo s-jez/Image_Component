@@ -1,10 +1,10 @@
-import { FC } from "react";
+import { FC, ReactNode, MouseEventHandler } from "react";
 import styles from "./Button.module.scss";
 
 interface IButton {
   color: "white" | "orange";
   type: "small" | "large";
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 const Button: FC<IButton> = ({ color, type, children }: IButton) => {

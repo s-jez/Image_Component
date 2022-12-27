@@ -1,8 +1,8 @@
 .img {
-  margin: 50px;
+  margin: 5px;
 }
 .square {
-  margin: 40px 0;
+  margin: 20px 0;
 }
 .circle {
   display: inline-block;
@@ -10,7 +10,6 @@
   opacity: 1;
   img {
     border-radius: 50%;
-    object-fit: cover;
     border: 1px solid #fff;
   }
 }

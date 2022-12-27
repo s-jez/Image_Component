@@ -1,7 +1,6 @@
 import Image from "next/image";
 import styles from "./CustomImage.module.scss";
 import { FC } from "react";
-import { url } from "inspector";
 
 interface ICustomImage {
   src: string;
@@ -23,18 +22,16 @@ const CustomImage: FC<ICustomImage> = ({
           backgroundSize: "cover",
         }}
       >
-        <div
-          className={styles.circle}
-          style={{
-            transform: `scale(${imageScale}, ${imageScale})`,
-          }}
-        >
+        <div className={styles.circle}>
           <Image
             className={styles.img}
             src={src}
             alt={alt}
             width={300}
             height={300}
+            style={{
+              transform: `scale(${imageScale / 1.05}, ${imageScale / 1.05})`,
+            }}
           ></Image>
         </div>
       </div>

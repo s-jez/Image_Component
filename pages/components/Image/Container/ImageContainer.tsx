@@ -2,7 +2,7 @@ import Button from "../../Button/Button";
 import CustomImage from "../Custom/CustomImage";
 import styles from "./ImageContainer.module.scss";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
-import { useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import useDisplayImage from "../../../hooks/useDisplayImage";
 
 const ImageContainer = () => {
@@ -10,6 +10,20 @@ const ImageContainer = () => {
   const [imageScale, setImageScale] = useState(1);
 
   const { result, uploader } = useDisplayImage();
+
+  const handleAddScale = () => setImageScale(imageScale + 0.1);
+  const handleRemoveScale = () => setImageScale(imageScale - 0.1);
+
+  useEffect(() => {
+    let minImageScale = 1,
+      maxImageScale = 1.1;
+    if (imageScale < minImageScale) {
+      setImageScale(minImageScale);
+    }
+    if (imageScale > maxImageScale) {
+      setImageScale(maxImageScale);
+    }
+  }, [imageScale]);
 
   return (
     <div className={styles.container}>
@@ -34,13 +48,13 @@ const ImageContainer = () => {
       />
       {result && <CustomImage src={result} alt="" imageScale={imageScale} />}
       <div className={styles["container__slider"]}>
-        <button>
+        <button onClick={handleRemoveScale}>
           <AiOutlineMinus />
         </button>
         <input
           type="range"
           min="1"
-          max="1.3"
+          max="1.1"
           value={imageScale}
           step="0.1"
           onChange={(e) => {
@@ -48,7 +62,7 @@ const ImageContainer = () => {
           }}
           className={styles.slider}
         />
-        <button>
+        <button onClick={handleAddScale}>
           <AiOutlinePlus />
         </button>
       </div>
