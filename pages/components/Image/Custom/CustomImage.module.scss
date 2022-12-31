@@ -1,5 +1,5 @@
 .img {
-  margin: 105px;
+  margin: 8rem;
   opacity: 1;
 }
 .square {
@@ -17,9 +17,16 @@
 @media (max-width: 720px) {
   .circle {
     img {
-      width: 50%;
+      width: 40%;
       height: 50%;
       margin: 8rem;
+    }
+  }
+}
+@media (max-width: 380px) {
+  .circle {
+    img {
+      margin: 6rem;
     }
   }
 }

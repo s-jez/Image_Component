@@ -15,8 +15,8 @@ const ImageContainer = () => {
   const handleRemoveScale = () => setImageScale(imageScale - 0.1);
 
   useEffect(() => {
-    let minImageScale = 1.5,
-      maxImageScale = 2;
+    let minImageScale = 1.8,
+      maxImageScale = 2.2;
     if (imageScale < minImageScale) {
       setImageScale(minImageScale);
     }
@@ -53,8 +53,8 @@ const ImageContainer = () => {
         </button>
         <input
           type="range"
-          min="1.5"
-          max="2"
+          min="1.8"
+          max="2.2"
           value={imageScale}
           step="0.1"
           onChange={(e) => {
