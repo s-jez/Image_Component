@@ -17,21 +17,9 @@
 @media (max-width: 720px) {
   .circle {
     img {
-      margin: 75px;
-    }
-  }
-}
-@media (max-width: 380px) {
-  .circle {
-    img {
-      margin: 60px;
-    }
-  }
-}
-@media (max-width: 340px) {
-  .circle {
-    img {
-      margin: 50px;
+      width: 50%;
+      height: 50%;
+      margin: 8rem;
     }
   }
 }
