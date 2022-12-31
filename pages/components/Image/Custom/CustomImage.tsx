@@ -13,24 +13,26 @@ const CustomImage: FC<ICustomImage> = ({
   alt,
   imageScale,
 }: ICustomImage) => {
+  const defaultImageURL = "/avatar.png";
+  const imageSource = src ? src : defaultImageURL;
   return (
     <div>
       <div
         className={styles.square}
         style={{
-          backgroundImage: `url(${src})`,
+          backgroundImage: `url(${imageSource})`,
           backgroundSize: "cover",
         }}
       >
         <div className={styles.circle}>
           <Image
             className={styles.img}
-            src={src}
+            src={imageSource}
             alt={alt}
-            width={300}
-            height={300}
+            width={200}
+            height={200}
             style={{
-              transform: `scale(${imageScale / 1.05}, ${imageScale / 1.05})`,
+              transform: `scale(${imageScale}, ${imageScale})`,
             }}
           ></Image>
         </div>

@@ -1,15 +1,37 @@
 .img {
-  margin: 5px;
+  margin: 105px;
+  opacity: 1;
 }
 .square {
   margin: 20px 0;
+  background-color: #C4C4C4;
 }
 .circle {
   display: inline-block;
-  opacity: 1;
-  opacity: 1;
+  background-color: rgba(255, 255, 255, .4);
+
   img {
     border-radius: 50%;
-    border: 1px solid #fff;
+  }
+}
+@media (max-width: 720px) {
+  .circle {
+    img {
+      margin: 75px;
+    }
+  }
+}
+@media (max-width: 380px) {
+  .circle {
+    img {
+      margin: 60px;
+    }
+  }
+}
+@media (max-width: 340px) {
+  .circle {
+    img {
+      margin: 50px;
+    }
   }
 }

@@ -15,8 +15,8 @@ const ImageContainer = () => {
   const handleRemoveScale = () => setImageScale(imageScale - 0.1);
 
   useEffect(() => {
-    let minImageScale = 1,
-      maxImageScale = 1.1;
+    let minImageScale = 1.5,
+      maxImageScale = 2;
     if (imageScale < minImageScale) {
       setImageScale(minImageScale);
     }
@@ -46,15 +46,15 @@ const ImageContainer = () => {
           uploader(e);
         }}
       />
-      {result && <CustomImage src={result} alt="" imageScale={imageScale} />}
+      <CustomImage src={result} alt="" imageScale={imageScale} />
       <div className={styles["container__slider"]}>
         <button onClick={handleRemoveScale}>
           <AiOutlineMinus />
         </button>
         <input
           type="range"
-          min="1"
-          max="1.1"
+          min="1.5"
+          max="2"
           value={imageScale}
           step="0.1"
           onChange={(e) => {

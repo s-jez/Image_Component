@@ -11,7 +11,7 @@ const useDisplayImage = () => {
         let data: string | ArrayBuffer = e.target?.result!;
         setResult(data.toString());
       });
-      reader.readAsDataURL(imageFileName);
+      imageFileName && reader.readAsDataURL(imageFileName);
     }
   };
   return { result, uploader };
