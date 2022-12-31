@@ -3,7 +3,7 @@ import CustomImage from "../Custom/CustomImage";
 import styles from "./ImageContainer.module.scss";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 import { useEffect, useState } from "react";
-import useDisplayImage from "../../../hooks/useDisplayImage";
+import useDisplayImage from "../../../../hooks/useDisplayImage";
 
 const ImageContainer = () => {
   const [image, setImage] = useState<File | null>(null);
