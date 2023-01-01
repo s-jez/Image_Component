@@ -1,6 +1,7 @@
 import Image from "next/image";
 import styles from "./CustomImage.module.scss";
 import { FC } from "react";
+import { TbDragDrop } from "react-icons/tb";
 
 interface ICustomImage {
   src: string;
@@ -24,6 +25,12 @@ const CustomImage: FC<ICustomImage> = ({
           backgroundSize: "cover",
         }}
       >
+        <div className={styles.text}>
+          <i>
+            <TbDragDrop />
+          </i>
+          <p>Przeciągaj i dopasuj</p>
+        </div>
         <div className={styles.circle}>
           <Image
             className={styles.img}

@@ -3,8 +3,32 @@
   opacity: 1;
 }
 .square {
+  position: relative;
   margin: 20px 0;
   background-color: #C4C4C4;
+}
+.text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.5);
+  padding: .7rem 1rem;
+  border-radius: 10px;
+  p {
+    color: white;
+    font-size: .9rem;
+  }
+  i {
+    display: flex;
+    color: white;
+    padding-right: 10px;
+    font-size: 1.2rem;
+  }
 }
 .circle {
   display: inline-block;
