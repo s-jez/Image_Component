@@ -46,10 +46,11 @@ const CustomImage: FC<ICustomImage> = ({
     const containerRect =
       containerRef.current?.getBoundingClientRect() as DOMRect;
 
-    const bottomOver = move.y < -(imageRect.height - containerRect.height) / 2;
     const topOver = move.y > (imageRect.height - containerRect.height) / 2;
-    const rightOver = move.y < -(imageRect.height - containerRect.height) / 2;
-    const leftOver = move.y > (imageRect.height - containerRect.height) / 2;
+    const bottomOver = move.y < -(imageRect.height - containerRect.height) / 2;
+
+    const rightOver = move.x < -(imageRect.width - containerRect.width) / 2;
+    const leftOver = move.x > (imageRect.width - containerRect.width) / 2;
 
     if (bottomOver && rightOver) {
       setMove({
@@ -81,6 +82,7 @@ const CustomImage: FC<ICustomImage> = ({
       setMove({ ...move, x: (imageRect.width - containerRect.width) / 2 });
     }
   };
+
   useEffect(() => {
     const image = new (window as any).Image();
     image.src = src;
@@ -100,6 +102,7 @@ const CustomImage: FC<ICustomImage> = ({
           backgroundImage: `url(${imageSource})`,
           backgroundSize: "cover",
           overflow: "hidden",
+          cursor: "move",
         }}
       >
         <div className={styles.text}>
