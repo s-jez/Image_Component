@@ -1,5 +1,6 @@
 
 # Image Component
+Crop, Zoom - Image Upload Component.
 
 ### https://meek-clafoutis-18c6a6.netlify.app/
 
