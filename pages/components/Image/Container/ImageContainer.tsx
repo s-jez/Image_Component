@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import useDisplayImage from "../../../../hooks/useDisplayImage";
 
 interface IImageContainer {
-  saveCrop: () => void;
+  saveCrop?: () => void;
 }
 
 const ImageContainer = ({ saveCrop }: IImageContainer) => {
