@@ -1,6 +1,6 @@
 import Image from "next/image";
 import styles from "./CustomImage.module.scss";
-import { FC } from "react";
+import React, { FC, useEffect, useRef, useState } from "react";
 import { TbDragDrop } from "react-icons/tb";
 
 interface ICustomImage {
@@ -14,15 +14,92 @@ const CustomImage: FC<ICustomImage> = ({
   alt,
   imageScale,
 }: ICustomImage) => {
+  const imageRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const [isDrag, setIsDrag] = useState(false);
+
+  const [move, setMove] = useState({ x: 0, y: 0 });
+  const [startPosition, setStartPosition] = useState({ x: 0, y: 0 });
+
+  const handleDragStart = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    setIsDrag(true);
+    setStartPosition({
+      x: e.clientX - move.x,
+      y: e.clientY - move.y,
+    });
+  };
+
+  const handleDrag = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    if (!isDrag) return;
+    setMove({
+      x: e.clientX - startPosition.x,
+      y: e.clientY - startPosition.y,
+    });
+  };
+
+  const handleDragEnd = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    if (!isDrag) return;
+    setIsDrag(false);
+
+    const imageRect = imageRef.current?.getBoundingClientRect() as DOMRect;
+    const containerRect =
+      containerRef.current?.getBoundingClientRect() as DOMRect;
+
+    const bottomOver = move.y < -(imageRect.height - containerRect.height) / 2;
+    const topOver = move.y > (imageRect.height - containerRect.height) / 2;
+    const rightOver = move.y < -(imageRect.height - containerRect.height) / 2;
+    const leftOver = move.y > (imageRect.height - containerRect.height) / 2;
+
+    if (bottomOver && rightOver) {
+      setMove({
+        x: -(imageRect.width - containerRect.width) / 2,
+        y: -(imageRect.height - containerRect.height) / 2,
+      });
+    } else if (bottomOver && leftOver) {
+      setMove({
+        x: (imageRect.width - containerRect.width) / 2,
+        y: -(imageRect.height - containerRect.height) / 2,
+      });
+    } else if (bottomOver) {
+      setMove({ ...move, y: -(imageRect.height - containerRect.height) / 2 });
+    } else if (topOver && rightOver) {
+      setMove({
+        x: -(imageRect.width - containerRect.width) / 2,
+        y: (imageRect.height - containerRect.height) / 2,
+      });
+    } else if (topOver && leftOver) {
+      setMove({
+        x: (imageRect.width - containerRect.width) / 2,
+        y: (imageRect.height - containerRect.height) / 2,
+      });
+    } else if (topOver) {
+      setMove({ ...move, y: (imageRect.height - containerRect.height) / 2 });
+    } else if (rightOver) {
+      setMove({ ...move, x: -(imageRect.width - containerRect.width) / 2 });
+    } else if (leftOver) {
+      setMove({ ...move, x: (imageRect.width - containerRect.width) / 2 });
+    }
+  };
+  useEffect(() => {
+    const image = new (window as any).Image();
+    image.src = src;
+  }, [src]);
+
   const defaultImageURL = "/avatar.png";
   const imageSource = src ? src : defaultImageURL;
   return (
     <div>
       <div
         className={styles.square}
+        ref={containerRef}
+        onMouseDown={handleDragStart}
+        onMouseMove={handleDrag}
+        onMouseUp={handleDragEnd}
         style={{
           backgroundImage: `url(${imageSource})`,
           backgroundSize: "cover",
+          overflow: "hidden",
         }}
       >
         <div className={styles.text}>
@@ -39,8 +116,9 @@ const CustomImage: FC<ICustomImage> = ({
             width={200}
             height={200}
             style={{
-              transform: `scale(${imageScale}, ${imageScale})`,
+              transform: `translateX(${move.x}px) translateY(${move.y}px) scale(${imageScale})`,
             }}
+            ref={imageRef as React.Ref<HTMLImageElement>}
           ></Image>
         </div>
       </div>

@@ -5,7 +5,11 @@ import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 import { useEffect, useState } from "react";
 import useDisplayImage from "../../../../hooks/useDisplayImage";
 
-const ImageContainer = () => {
+interface IImageContainer {
+  saveCrop: () => void;
+}
+
+const ImageContainer = ({ saveCrop }: IImageContainer) => {
   const [image, setImage] = useState<File | null>(null);
   const [imageScale, setImageScale] = useState(1);
 
@@ -15,8 +19,8 @@ const ImageContainer = () => {
   const handleRemoveScale = () => setImageScale(imageScale - 0.1);
 
   useEffect(() => {
-    let minImageScale = 1.8,
-      maxImageScale = 2.2;
+    let minImageScale = 2,
+      maxImageScale = 3;
     if (imageScale < minImageScale) {
       setImageScale(minImageScale);
     }
@@ -53,8 +57,8 @@ const ImageContainer = () => {
         </button>
         <input
           type="range"
-          min="1.8"
-          max="2.2"
+          min="2"
+          max="3"
           value={imageScale}
           step="0.1"
           onChange={(e) => {
@@ -70,7 +74,7 @@ const ImageContainer = () => {
         <Button color="white" type="large">
           Anuluj
         </Button>
-        <Button color="orange" type="large">
+        <Button color="orange" type="large" onClick={saveCrop}>
           Zapisz zmiany
         </Button>
       </div>

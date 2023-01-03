@@ -1,5 +1,5 @@
 .img {
-  margin: 8rem;
+  margin: 10rem;
   opacity: 1;
 }
 .square {
@@ -15,8 +15,8 @@
   top: 15%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 10;
-  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  background: rgba(0, 0, 0, .5);
   padding: .7rem 1rem;
   border-radius: 10px;
   p {
@@ -30,12 +30,13 @@
     font-size: 1.2rem;
   }
 }
+
 .circle {
   display: inline-block;
   background-color: rgba(255, 255, 255, .4);
-
   img {
     border-radius: 50%;
+    object-fit: cover;
   }
 }
 @media (max-width: 720px) {
