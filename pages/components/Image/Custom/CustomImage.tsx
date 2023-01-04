@@ -120,6 +120,7 @@ const CustomImage: FC<ICustomImage> = ({
             height={200}
             style={{
               transform: `translateX(${move.x}px) translateY(${move.y}px) scale(${imageScale})`,
+              aspectRatio: 1,
             }}
             ref={imageRef as React.Ref<HTMLImageElement>}
           ></Image>

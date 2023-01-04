@@ -19,8 +19,8 @@ const ImageContainer = ({ saveCrop }: IImageContainer) => {
   const handleRemoveScale = () => setImageScale(imageScale - 0.1);
 
   useEffect(() => {
-    let minImageScale = 2,
-      maxImageScale = 3;
+    let minImageScale = 2.5,
+      maxImageScale = 3.5;
     if (imageScale < minImageScale) {
       setImageScale(minImageScale);
     }
@@ -57,8 +57,8 @@ const ImageContainer = ({ saveCrop }: IImageContainer) => {
         </button>
         <input
           type="range"
-          min="2"
-          max="3"
+          min="2.5"
+          max="3.5"
           value={imageScale}
           step="0.1"
           onChange={(e) => {
