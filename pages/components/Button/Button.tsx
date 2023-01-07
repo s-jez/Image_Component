@@ -6,7 +6,6 @@ interface IButton {
   type: "small" | "large";
   children: ReactNode;
   onClick?: MouseEventHandler<HTMLButtonElement>;
-  style?: CSSProperties;
 }
 
 const Button: FC<IButton> = ({ color, type, children, onClick }: IButton) => {

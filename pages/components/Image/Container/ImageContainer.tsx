@@ -5,13 +5,11 @@ import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 import { useEffect, useState } from "react";
 import useDisplayImage from "../../../../hooks/useDisplayImage";
 
-interface IImageContainer {
-  saveCrop?: () => void;
-}
-
-const ImageContainer = ({ saveCrop }: IImageContainer) => {
+const ImageContainer = () => {
+  let minImageScale = 2.5,
+    maxImageScale = 3.5;
   const [image, setImage] = useState<File | null>(null);
-  const [imageScale, setImageScale] = useState(1);
+  const [imageScale, setImageScale] = useState(minImageScale);
 
   const { result, uploader } = useDisplayImage();
 
@@ -19,14 +17,13 @@ const ImageContainer = ({ saveCrop }: IImageContainer) => {
   const handleRemoveScale = () => setImageScale(imageScale - 0.1);
 
   useEffect(() => {
-    let minImageScale = 2.5,
-      maxImageScale = 3.5;
     if (imageScale < minImageScale) {
       setImageScale(minImageScale);
     }
     if (imageScale > maxImageScale) {
       setImageScale(maxImageScale);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [imageScale]);
 
   return (
