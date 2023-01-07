@@ -70,14 +70,6 @@ const ImageContainer = ({ saveCrop }: IImageContainer) => {
           <AiOutlinePlus />
         </button>
       </div>
-      <div className={styles["container__btns"]}>
-        <Button color="white" type="large">
-          Anuluj
-        </Button>
-        <Button color="orange" type="large" onClick={saveCrop}>
-          Zapisz zmiany
-        </Button>
-      </div>
     </div>
   );
 };

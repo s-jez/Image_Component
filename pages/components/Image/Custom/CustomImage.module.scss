@@ -39,6 +39,13 @@
     object-fit: cover;
   }
 }
+.buttons {
+  display: flex;
+  justify-content: center;
+  button {
+    margin: 10px;
+  }
+}
 @media (max-width: 720px) {
   .circle {
     img {

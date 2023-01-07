@@ -2,6 +2,8 @@ import Image from "next/image";
 import styles from "./CustomImage.module.scss";
 import React, { FC, useEffect, useRef, useState } from "react";
 import { TbDragDrop } from "react-icons/tb";
+import Button from "../../Button/Button";
+import { saveAs } from "file-saver";
 
 interface ICustomImage {
   src: string;
@@ -88,6 +90,35 @@ const CustomImage: FC<ICustomImage> = ({
     image.src = src;
   }, [src]);
 
+  const saveCrop = () => {
+    const imageRect = imageRef.current?.getBoundingClientRect() as DOMRect;
+    const containerRect =
+      containerRef.current?.getBoundingClientRect() as DOMRect;
+    const canvas = document.createElement("canvas");
+    canvas.width = containerRef.current?.offsetWidth as number;
+    canvas.height = containerRef.current?.offsetHeight as number;
+    const ctx = canvas.getContext("2d");
+    const image = new (window as any).Image();
+    image.onload = () => {
+      const ratio = image.width / imageRect.width;
+
+      ctx?.drawImage(
+        image,
+        Math.abs(containerRect.x - imageRect.x) * ratio,
+        Math.abs(containerRect.y - imageRect.y) * ratio,
+        containerRect.width * ratio,
+        containerRect.height * ratio,
+        0,
+        0,
+        canvas.width,
+        canvas.height
+      );
+      canvas.toBlob(
+        (blob) => blob && saveAs(blob, `image_${new Date().getTime()}.png`)
+      );
+    };
+    image.src = imageSource;
+  };
   const defaultImageURL = "/avatar.png";
   const imageSource = src ? src : defaultImageURL;
   return (
@@ -103,6 +134,7 @@ const CustomImage: FC<ICustomImage> = ({
           backgroundSize: "cover",
           overflow: "hidden",
           cursor: "move",
+          userSelect: "none",
         }}
       >
         <div className={styles.text}>
@@ -123,8 +155,17 @@ const CustomImage: FC<ICustomImage> = ({
               aspectRatio: 1,
             }}
             ref={imageRef as React.Ref<HTMLImageElement>}
+            draggable={false}
           ></Image>
         </div>
+      </div>
+      <div className={styles.buttons}>
+        <Button color="white" type="large">
+          Anuluj
+        </Button>
+        <Button color="orange" type="large" onClick={saveCrop}>
+          Zapisz zmiany
+        </Button>
       </div>
     </div>
   );

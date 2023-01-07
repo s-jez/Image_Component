@@ -1,4 +1,4 @@
-import { FC, ReactNode, MouseEventHandler } from "react";
+import { FC, ReactNode, MouseEventHandler, CSSProperties } from "react";
 import styles from "./Button.module.scss";
 
 interface IButton {
@@ -6,6 +6,7 @@ interface IButton {
   type: "small" | "large";
   children: ReactNode;
   onClick?: MouseEventHandler<HTMLButtonElement>;
+  style?: CSSProperties;
 }
 
 const Button: FC<IButton> = ({ color, type, children, onClick }: IButton) => {
