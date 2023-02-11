@@ -11,6 +11,7 @@ Crop, Zoom - Image Upload Component.
 
 - React.JS
 - TypeScript
+- SCSS
 
 ## Run Locally
 
